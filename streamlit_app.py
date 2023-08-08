@@ -15,10 +15,15 @@ v_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com
 # set the index as the fruit name
 v_fruit_list = v_fruit_list.set_index('Fruit')
 
-# Let's put a pick list here so they can pick the fruit they want to include 
-streamlit.multiselect("Pick some fruits:", list(v_fruit_list.index),['Avocado','Strawberries'])
+# Let's put a pick list here so they can pick the fruit they want to include (preselects Acocado and Strawberries)
+# streamlit.multiselect("Pick some fruits:", list(v_fruit_list.index),['Avocado','Strawberries']) 
+# the above works as is, but we can assign to a variable to load the selected values into it:
+v_fruits_selected = streamlit.multiselect("Pick some fruits:", list(v_fruit_list.index),['Avocado','Strawberries'])
+# loc: used to access a group of rows and columns by label(s) or a boolean array.
+v_fruits_to_show = v_fruit_list.loc[v_fruits_selected]
 
 # Display the table on the page
-streamlit.dataframe(v_fruit_list)
+# streamlit.dataframe(v_fruit_list)
 
-
+# Display the selected fruits only
+streamlit.dataframe(v_fruits_to_show)
