@@ -1,3 +1,3 @@
 import streamlit
 
-streamlit.title('Streamlit Training');
+streamlit.title('Streamlit Training Level 1');
